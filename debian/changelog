@@ -1,0 +1,22 @@
+libdata-fetcher-perl (1.03) squeeze; urgency=low
+
+  * Squeeze build
+
+ -- Morten Rønne <mron@dtic.dtu.dk>  Wed, 15 Feb 2012 11:57:58 +0100
+
+libdata-fetcher-perl (1.02) lenny; urgency=low
+
+  [ Morten Rønne ]
+  * Data::Fetcher::OAI changed to use DateTime objects for all dates/times.
+    Currently any value in from/until which is not a DateTime object will
+    be converted from unix epoch to a DateTime object.
+
+ -- Morten Rønne <mron@dtic.dtu.dk>  Tue, 04 Oct 2011 07:33:43 +0000
+
+libdata-fetcher-perl (1.01) lenny; urgency=low
+
+  [ Morten Rønne ]
+  * Update HTTP fetcher to add size and modified to file info object
+    from list_files.
+
+ -- Morten Roenne <mron@dtic.dtu.dk>  Thu, 29 Sep 2011 09:20:53 +0000

@@ -1,0 +1,34 @@
+Source: libdata-fetcher-perl
+Section: perl
+Priority: optional
+Build-Depends: perl (>= 5.10.0),
+               libmetastore-util-perl (>= 1.0.0),
+               libdatetime-format-iso8601-perl,
+               libhttp-oai-perl (>= 3.20),
+               libnet-sftp-foreign-perl (>= 1.42),
+               libbuild-perl,
+               libtest-distribution-perl (>= 2.00),
+               libtest-strict-perl (>= 0.09),
+               libwww-perl (>= 5.813),
+               libnet-ftpssl-perl
+Build-Depends-Indep: perl (>= 5.10)
+Maintainer: Morten Roenne <mron@dtic.dtu.dk>
+Standards-Version: 3.8.0
+
+Package: libdata-fetcher-perl
+Architecture: all
+Depends: perl (>= 5.10.0),
+         libmetastore-util-perl (>= 1.0.0),
+         libdatetime-format-iso8601-perl,
+         libhttp-oai-perl (>= 3.20),
+         libnet-sftp-foreign-perl (>= 1.42),
+         libwww-perl (>= 5.813), 
+         libnet-ftpssl-perl
+Description: Data retrieval modules.
+ Data fetcher interface. Will try to automatically load 
+ appropriate retrival module by looking at the value of the 
+ 'transport' property.
+ .
+ Any sub class of Data::Fetcher should implement the 
+ list_files(), get_file() and delete_file() methods.
+ .

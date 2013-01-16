@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use FindBin;
+use Build::Debian;
+use Build::Options qw(build_options);
+use Getopt::Long;
+
+my %options = ();
+my $callback = sub  {
+    $options{$_[0]} = $_[1];
+};
+
+$options{pkgname}       = 'libdata-fetcher-perl';
+$options{version}       = '1.03';
+$options{repository}    = 'svn+ssh://svn.cvt.dk/home/svn/dls/data-fetcher/trunk';
+$options{'build-dir'}   = '/tmp';
+$options{'working-dir'} = "$FindBin::Bin";
+$options{'upload-to'}   = 'packages.cvt.dk:/data/repositories/dtic/mini-dinstall/incoming';
+
+GetOptions (build_options (\%Build::Debian::PROPERTIES, $callback));
+
+my $build = Build::Debian->new(%options);
+
+$build->package();
+
+exit (0);

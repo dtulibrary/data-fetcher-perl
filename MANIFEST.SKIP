@@ -1,0 +1,10 @@
+^debian/*
+^.git/*
+^_build
+^Build$
+^blib
+~$
+\.swp$
+\.bak$
+^MANIFEST\.SKIP$
+^cover_db$

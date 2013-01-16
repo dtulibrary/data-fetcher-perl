@@ -1,0 +1,17 @@
+Build.PL
+build_deb
+Changes
+lib/Data/Fetcher.pm
+lib/Data/Fetcher/File.pm
+lib/Data/Fetcher/FileInfo.pm
+lib/Data/Fetcher/FS.pm
+lib/Data/Fetcher/FTP.pm
+lib/Data/Fetcher/FTPS.pm
+lib/Data/Fetcher/HTTP.pm
+lib/Data/Fetcher/OAI.pm
+lib/Data/Fetcher/SFTP.pm
+Makefile.PL
+MANIFEST
+META.yml
+README.md
+t/01-FS.t

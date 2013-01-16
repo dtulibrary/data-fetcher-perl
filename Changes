@@ -1,0 +1,20 @@
+Revision history for Perl extension Data::Fetcher.
+
+1.01
+    Thu Sep 29 09:20:53 2011
+    - HTTP fetcher now has size and modified values assigned.
+
+1.00
+
+    Fri Sep 10 13:53:00 2010
+    - Relaxed remote size check to not check support of SIZE and STAT
+    commands in Data::Fetcher::FTP.
+
+    Thu Aug 19 12:16:00 2010
+    - XML declaration is not output to file.
+
+    Tue May 18 10:48:00 2010
+    - OAI fetcher won't generate a file when no records are harvested.
+
+    Tue Apr  6 10:51:00 2010
+	- Initial version.
