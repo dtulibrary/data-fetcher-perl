@@ -16,7 +16,7 @@ my $build = Module::Build->new
         'DateTime::Format::ISO8601' => '0.06',
         'LWP' => '5.836',
         'Net::FTPSSL' => '0.20',
-        'Test/Distribution.pm' => 0,
+        'Test::Distribution' => 0,
     },
 );
 $build->create_build_script;
