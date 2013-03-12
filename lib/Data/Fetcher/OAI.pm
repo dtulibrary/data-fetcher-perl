@@ -43,7 +43,7 @@ for my $property_rw (qw(
 # assigned to a typeglob of the appropriate name.
 
 for my $property_r (qw(
-    baseurl
+    basename
     oai
 )) {
     my $slot   = $property_r;
@@ -64,7 +64,7 @@ sub init {
 
         $self->{oai} = 
             HTTP::OAI::Harvester->new(
-                baseURL => $self->baseurl,
+                baseURL => $self->basename,
             );
 
         $self->timeout($self->{timeout});
@@ -74,7 +74,7 @@ sub init {
 
         my $response = $self->oai->Identify;
         if ($response->is_error) {
-            die "error identifying repository ",$self->baseurl, " (",
+            die "error identifying repository ",$self->basename, " (",
                 $response->code, ") ", $response->message;
         }
 
@@ -115,6 +115,19 @@ sub init {
     return $self;
 }
 
+sub delta_month {
+    my ($until, $from) = @_;
+
+    return $until->delta_md($from)->delta_months() > 1;
+}
+
+
+sub delta_year {
+    my ($until, $from) = @_;
+
+    return $until->delta_md($from)->delta_months() > 12;
+}
+
 sub list_files {
     my ($self) = @_;
     my ($period, $fs, $no, $until, $func, $from);
@@ -122,10 +135,12 @@ sub list_files {
 
     eval {
         # Figure out how many files we should be getting
-        if ($self->{fetch_max}) {
-            $period = $self->{fetch_max};
-            $func = $self->until()->can("delta_$period");
-            if ($func->($self->until(), $self->from())->months() > 1) {
+        if ($self->{set_limit}) {
+            $self->from()->set_time_zone('UTC');
+            $self->until()->set_time_zone('UTC');
+            $period = $self->{set_limit};
+            $func = $self->can("delta_$period");
+            if ($func && $func->($self->until(), $self->from())) {
                 # We need to split into multiple downloads
                 $no = 1;
                 $from = $self->from();
@@ -206,7 +221,6 @@ sub get_file {
             until => $until,
             set =>  $self->set,
         );
-        # TODO: Check for no records found, which shouldn't be a die
         die $rs->message if ($rs->is_error);
 
         my $out = $self->fi->io_write($local_file, undef, ':encoding(UTF-8)');
@@ -235,7 +249,7 @@ sub get_file {
         }
         $header = join ("\n", $header,
             '<responseDate>'.$rs->responseDate.'</responseDate>',
-            '<request '.join (' ', @attributes).'>'.$self->baseurl.'</request>',
+            '<request '.join (' ', @attributes).'>'.$self->basename.'</request>',
             '<ListRecords>',
         );
 
@@ -278,6 +292,7 @@ sub get_file {
         $fs->transfer_end(time);
 
         unless ($rec_count) {
+            $fs->size(0);
             unlink $local_file;
             $local_file = q{};
         }
@@ -332,7 +347,7 @@ sub calculate_limit_fetch {
     my ($self, $from, $period) = @_;
     my ($until);
 
-    if ($period eq 'md') {
+    if ($period eq 'month') {
         $until = DateTime->last_day_of_month(
             year => $from->year(),
             month => $from->month(),
@@ -383,7 +398,7 @@ Data::Fetcher::OAI - Data retrieval using OAI-PMH protocol.
   use Data::Fetcher::OAI;
 
   my $fetcher = new Data::Fetcher::OAI(
-    baseurl => $url,
+    basename => $url,
   );
 
   foreach (@{$fetcher->list_files()}) {
@@ -406,7 +421,7 @@ Sub class of the Data::Fetcher class.
 
   Returns a new Data::Fetcher::OAI object.
 
-  The constructor requires a baseurl key/value pair to identify the remote
+  The constructor requires a basename key/value pair to identify the remote
   OAI repository.
 
   An optional timeout key/value pair can be set, specifying in seconds the
@@ -455,7 +470,7 @@ Sub class of the Data::Fetcher class.
 
   Returns the OAI harvester as a HTTP::OAI::Harvester object.
 
-=item baseurl()
+=item basename()
 
   Returns the OAI repository base URL as string.
 
