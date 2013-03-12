@@ -8,6 +8,8 @@ use Data::Fetcher::File;
 
 use base qw(Data::Fetcher);
 
+our $VERSION = "1.1.0";
+
 # private interface.
 
 sub _list_files {

@@ -8,7 +8,7 @@ use Net::FTP;
 
 use base qw(Data::Fetcher);
 
-our $VERSION = "1.0.0";
+our $VERSION = "1.1.0";
 
 # private interface.
 

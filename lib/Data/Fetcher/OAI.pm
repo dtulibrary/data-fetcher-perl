@@ -540,6 +540,14 @@ Sub class of the Data::Fetcher class.
   should be a month or a year.
   Will return a DataTime object for the end of the period.
 
+=item delta_month($from, $until)
+
+  Return true if dates are more than 1 month apart
+
+=item delta_year($from, $until)
+
+  Return true if dates are more than 12 month apart
+
 =item xml_escape($value, $all)
 
   Convert value to xml encoding.

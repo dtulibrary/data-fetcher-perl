@@ -7,6 +7,8 @@ use Errno qw/EINTR/;
 use IO::File;
 use IO::Pipe;
 
+our $VERSION = "1.1.0";
+
 # private interface.
 
 use constant F => 0;   # character never appears in text

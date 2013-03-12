@@ -1,0 +1,56 @@
+---
+name: Data-Fetcher
+version: v1.1.0
+author:
+  - "Jan Bauer Nielsen <jbn@dtic.dtu.dk>\nMorten RÃ¸nne <mron@dtic.dtu.dk>\nMichael Niedhardt <mine@dtic.dtu.dk>"
+abstract: Basic data retrieval interface.
+license: perl
+requires:
+  DateTime: 0.06
+  DateTime::Format::ISO8601: 0.06
+  File::Copy: 2.11
+  File::Listing: 5.810
+  HTTP::OAI: 3.20
+  LWP: 5.836
+  Net::FTP: 2.77
+  Net::FTPSSL: 0.20
+  Net::SFTP::Foreign: 1.42
+  Test::Distribution: 0
+  XML::LibXML: 1.58
+  perl: v5.8.0
+configure_requires:
+  Module::Build: 0.340201
+generated_by: Module::Build version 0.340201
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+provides:
+  Data::Fetcher:
+    file: lib/Data/Fetcher.pm
+    version: v1.1.0
+  Data::Fetcher::FS:
+    file: lib/Data/Fetcher/FS.pm
+    version: v1.1.0
+  Data::Fetcher::FTP:
+    file: lib/Data/Fetcher/FTP.pm
+    version: v1.1.0
+  Data::Fetcher::FTPS:
+    file: lib/Data/Fetcher/FTPS.pm
+    version: v1.1.0
+  Data::Fetcher::File:
+    file: lib/Data/Fetcher/File.pm
+    version: v1.1.0
+  Data::Fetcher::FileInfo:
+    file: lib/Data/Fetcher/FileInfo.pm
+    version: v1.1.0
+  Data::Fetcher::HTTP:
+    file: lib/Data/Fetcher/HTTP.pm
+    version: v1.0.0
+  Data::Fetcher::OAI:
+    file: lib/Data/Fetcher/OAI.pm
+    version: v1.1.0
+  Data::Fetcher::SFTP:
+    file: lib/Data/Fetcher/SFTP.pm
+    version: v1.0.0
+resources:
+  license: http://dev.perl.org/licenses/

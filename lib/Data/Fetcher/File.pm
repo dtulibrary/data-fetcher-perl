@@ -3,6 +3,8 @@ package Data::Fetcher::File;
 use strict;
 use warnings;
 
+our $VERSION = "1.1.0";
+
 # public interface.
 
 sub new {
